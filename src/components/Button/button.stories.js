@@ -28,6 +28,7 @@ export default {
     size: {
       options: [undefined, "sm", "lg"],
     },
+    onClick: { action: "onClick" },
   },
 };
 

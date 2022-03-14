@@ -108,6 +108,7 @@ Button.propTypes = {
   icon: PropTypes.element,
   isFullWidth: PropTypes.bool,
   children: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default Button;
