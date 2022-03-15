@@ -6,7 +6,7 @@ function SidebarNav({ initialNavigation, onItemClick }) {
   const [navigation, setNavigation] = useState(initialNavigation);
 
   const handleClick = (event, itemClicked) => {
-    event.preventDefault();
+    // event.preventDefault();
     const newNavigation = navigation.map((navItem) => {
       navItem.current = navItem === itemClicked;
       return navItem;
@@ -15,13 +15,17 @@ function SidebarNav({ initialNavigation, onItemClick }) {
     onItemClick(itemClicked);
   };
 
-  return navigation.map((nav) => (
-    <SidebarNavItem
-      key={nav.name}
-      onClick={(event) => handleClick(event, nav)}
-      {...nav}
-    />
-  ));
+  return (
+    <div>
+      {navigation.map((nav) => (
+        <SidebarNavItem
+          key={nav.name}
+          onClick={(event) => handleClick(event, nav)}
+          {...nav}
+        />
+      ))}
+    </div>
+  );
 }
 
 // SidebarNav.propTypes = {
