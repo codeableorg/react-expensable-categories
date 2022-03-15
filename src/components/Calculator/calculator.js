@@ -5,6 +5,7 @@ import { IoMdCheckmark } from "react-icons/io";
 import { RiCalendarEventFill } from "react-icons/ri";
 import { FaEquals } from "react-icons/fa";
 import { useState } from "react";
+import CircleIcon from "../CircleIcon";
 
 const Container = styled.div`
   width: fit-content;
@@ -63,17 +64,6 @@ const SubmitButton = styled.button`
   &:hover {
     opacity: 0.8;
   }
-`;
-
-const IconWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  padding: 10px;
-  background-color: white;
-  border-radius: 50%;
-  color: ${({ color }) => color};
 `;
 
 const HeaderInfo = styled.div`
@@ -187,9 +177,7 @@ function Calculator({ category }) {
   return (
     <Container>
       <Header color={category.color}>
-        <IconWrapper color={category.color}>
-          <category.icon />
-        </IconWrapper>
+        <CircleIcon color={category.color} Icon={category.icon} inverted />
         <HeaderInfo>
           <p className="title">Add expense to</p>
           <p className="category">{category.name}</p>
