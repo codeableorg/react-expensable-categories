@@ -1,27 +1,17 @@
-# Expensable Categories Component
+# Expensable - Router
 
-Using `useEffect` hook, create the categories component for Expensable app.
+## Sidebar
 
-You can find the [design here](https://www.figma.com/file/Crqtn0kqnB1EKQWZVXE3of/?node-id=4101%3A1163)
+Crea te new Sidebar component that contains the Expensable Logo and the SidebarNav component. Use react-router to navigate to:
 
-![https://p-vvf5mjm.t4.n0.cdn.getcloudapp.com/items/KouAy98O/64a0dc85-ca25-41f4-bcc0-c5b9f5faf795.jpg?source=viewer&v=f1781d12b1342d3decfc77c76d9b6659](https://p-vvf5mjm.t4.n0.cdn.getcloudapp.com/items/KouAy98O/64a0dc85-ca25-41f4-bcc0-c5b9f5faf795.jpg?source=viewer&v=f1781d12b1342d3decfc77c76d9b6659)
+- /categories: show categories page
+- /transactions: show transactions page
+- /budgets: show budgets page
 
-You can find the
-[backend repository here](https://github.com/codeableorg/expensable-api), it
-includes an `insomnia.json` file that shows all the available endpoints. Your
-component should be showcase on Storybook.
+![https://p-vvf5mjm.t4.n0.cdn.getcloudapp.com/items/Z4u7Zn0l/1ef538f2-f179-4995-8ff0-f563a3b887ad.gif?source=viewer&v=3695da1600cd24c30e4aa60d21df6662](https://p-vvf5mjm.t4.n0.cdn.getcloudapp.com/items/Z4u7Zn0l/1ef538f2-f179-4995-8ff0-f563a3b887ad.gif?source=viewer&v=3695da1600cd24c30e4aa60d21df6662)
 
-## Take into consideration:
+## MonthPicker
 
-- The API doesn’t have information about the Icon or the Color of the category.
-  Use random icons and colors for your solution.
-- You can choose any month as the “current” month.
+Create a MonthPicker component to be shown on the categories page alongside the CategoriesList and an extra card that shows the total amount for the transaction on a given month. Use react-router to interact with the MonthPicker so you can refresh the page an stay on the currently selected month.
 
-The base repository includes all the work previously done:
-
-- Reset styles
-- Typography
-- Colors
-- Button component
-- SidebarNav component
-- Calculator component
+- /categories/expenses?year=2021&month=9: show the categories for the expenses in September of 2021.
