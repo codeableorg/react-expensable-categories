@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
 import { colors } from "./styles";
-
-import Categories from "./components/Categories/categories";
 import { Route, Routes } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import CategoriesPage from "./pages/categories-page";
@@ -25,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<CategoriesPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/categories/:type" element={<CategoriesPage />} />
           <Route path="/transactions" element={<h1>Transactions</h1>} />
           <Route path="/budgets" element={<h1>Budgets</h1>} />
         </Routes>

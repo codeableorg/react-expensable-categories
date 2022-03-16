@@ -1,21 +1,21 @@
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { colors, typography } from "../../styles";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-const currentStyles = (current) => {
-  if (current) {
-    return `
-    background-color: ${colors.pink[400]};
-    color: ${colors.white};
-    &:hover {
-      background-color: ${colors.pink[400]};
-    }
-    `;
-  }
-};
+// const currentStyles = (current) => {
+//   if (current) {
+//     return `
+//     background-color: ${colors.pink[400]};
+//     color: ${colors.white};
+//     &:hover {
+//       background-color: ${colors.pink[400]};
+//     }
+//     `;
+//   }
+// };
 
-const StyledLink = styled(Link)`
+const StyledNavLink = styled(NavLink)`
   padding: 0.5rem;
   display: flex;
   gap: 0.75rem;
@@ -34,18 +34,32 @@ const StyledLink = styled(Link)`
     outline: 1px solid ${colors.pink[500]};
   }
   &:visited {
-    color: ${(props) => (props.current ? colors.white : colors.gray[600])};
+    color: ${colors.gray[600]};
   }
-
-  ${(props) => currentStyles(props.current)}
 `;
 
 function SidebarNavItem({ name, icon, current, ...rest }) {
   return (
-    <StyledLink current={current ? "true" : undefined} {...rest}>
+    <StyledNavLink
+      current={current ? "true" : undefined}
+      {...rest}
+      style={({ isActive }) => {
+        if (!isActive) return;
+        return {
+          backgroundColor: colors.pink[400],
+          color: colors.white,
+          "&:hover": {
+            backgroundColor: colors.pink[400],
+          },
+          "&:visited": {
+            color: colors.white,
+          },
+        };
+      }}
+    >
       {icon}
       {name}
-    </StyledLink>
+    </StyledNavLink>
   );
 }
 

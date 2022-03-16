@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { BiCategoryAlt } from "react-icons/bi";
+import { BsReceiptCutoff } from "react-icons/bs";
+import { GiTargeted } from "react-icons/gi";
 import SidebarNavItem from "./sidebar-nav-item";
 
 const Wrapper = styled.div`
@@ -8,26 +10,25 @@ const Wrapper = styled.div`
   gap: 0.5rem;
 `;
 
-function SidebarNav({ initialNavigation, onItemClick }) {
-  const [navigation, setNavigation] = useState(initialNavigation);
-
-  const handleClick = (itemClicked) => {
-    const newNavigation = navigation.map((navItem) => {
-      navItem.current = navItem === itemClicked;
-      return navItem;
-    });
-    setNavigation(newNavigation);
-    onItemClick(itemClicked);
-  };
+function SidebarNav() {
+  const navigation = [
+    {
+      name: "Categories",
+      to: "/categories",
+      icon: <BiCategoryAlt />,
+    },
+    {
+      name: "Transactions",
+      icon: <BsReceiptCutoff />,
+      to: "/transactions",
+    },
+    { name: "Budgets", to: "/budgets", icon: <GiTargeted /> },
+  ];
 
   return (
     <Wrapper>
       {navigation.map((nav) => (
-        <SidebarNavItem
-          key={nav.name}
-          onClick={() => handleClick(nav)}
-          {...nav}
-        />
+        <SidebarNavItem key={nav.name} {...nav} />
       ))}
     </Wrapper>
   );

@@ -33,7 +33,7 @@ const TotalLabel = styled.p`
 
 function Categories({ date, type }) {
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const monthlyData = getMonthlyData(categories, date, type);
@@ -60,7 +60,9 @@ function Categories({ date, type }) {
     <Wrapper>
       <TotalWrapper>
         <TotalAmount>$ {Intl.NumberFormat("en-US").format(total)}</TotalAmount>
-        <TotalLabel>Total Expenses</TotalLabel>
+        <TotalLabel>
+          Total {type === "expense" ? "Expenses" : "Income"}
+        </TotalLabel>
       </TotalWrapper>
       <CategoriesList data={monthlyData} />
     </Wrapper>

@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { format } from "date-fns";
-import { useState } from "react";
+import { format, getMonth, getYear } from "date-fns";
 import Categories from "../components/Categories/categories";
 import MonthPicker from "../components/MonthPicker";
 import { typography } from "../styles";
+import { useParams, useSearchParams } from "react-router-dom";
 
 const Title = styled.h1`
   ${typography.head.sm}
@@ -11,24 +11,32 @@ const Title = styled.h1`
 `;
 
 function CategoriesPage() {
-  const [date, setDate] = useState({ year: 2021, month: 11 });
-  const [type, setType] = useState("expense");
+  let params = useParams();
+  const [searchParams, setSearchParams] = useSearchParams({
+    year: getYear(new Date()),
+    month: getMonth(new Date()),
+  });
+  const type = params.type || "expense";
+  const date = {
+    year: +searchParams.get("year"),
+    month: +searchParams.get("month"),
+  };
 
   const handleRightClick = () => {
     const newMonth = date.month + 1;
     if (newMonth > 11) {
-      setDate({ year: date.year + 1, month: 0 });
+      setSearchParams({ year: date.year + 1, month: 0 });
     } else {
-      setDate({ year: date.year, month: newMonth });
+      setSearchParams({ year: date.year, month: newMonth });
     }
   };
 
   const handleLeftClick = () => {
     const newMonth = date.month - 1;
     if (newMonth < 0) {
-      setDate({ year: date.year - 1, month: 11 });
+      setSearchParams({ year: date.year - 1, month: 11 });
     } else {
-      setDate({ year: date.year, month: newMonth });
+      setSearchParams({ year: date.year, month: newMonth });
     }
   };
 
