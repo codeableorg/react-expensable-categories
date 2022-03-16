@@ -15,7 +15,7 @@ const currentStyles = (current) => {
   }
 };
 
-const StyledAnchor = styled.div`
+const StyledLink = styled(Link)`
   padding: 0.5rem;
   display: flex;
   gap: 0.75rem;
@@ -34,20 +34,18 @@ const StyledAnchor = styled.div`
     outline: 1px solid ${colors.pink[500]};
   }
   &:visited {
-    color: ${colors.gray[600]};
+    color: ${(props) => (props.current ? colors.white : colors.gray[600])};
   }
 
   ${(props) => currentStyles(props.current)}
 `;
 
-function SidebarNavItem({ name, icon, to, current }) {
+function SidebarNavItem({ name, icon, current, ...rest }) {
   return (
-    <Link to={to}>
-      <StyledAnchor current={current}>
-        {icon}
-        {name}
-      </StyledAnchor>
-    </Link>
+    <StyledLink current={current ? "true" : undefined} {...rest}>
+      {icon}
+      {name}
+    </StyledLink>
   );
 }
 

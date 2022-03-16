@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
-import SidebarNav from "./components/SidebarNav";
 import { colors } from "./styles";
-import { BiCategoryAlt } from "react-icons/bi";
-import { BsReceiptCutoff } from "react-icons/bs";
-import { GiTargeted } from "react-icons/gi";
+
 import Categories from "./components/Categories/categories";
 import { Route, Routes } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import CategoriesPage from "./pages/categories-page";
 
 const Container = styled.div`
   display: grid;
@@ -14,43 +13,22 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-const CategoryPage = () => {
-  return (
-    <div>
-      <h1>Categories</h1>
-      <Categories date={{ year: 2021, month: 8 }} type="expense" />
-    </div>
-  );
-};
+const MainContainer = styled.main`
+  padding: 1.5rem 2rem;
+`;
 
 function App() {
-  const navigation = [
-    {
-      name: "Categories",
-      to: "/categories",
-      icon: <BiCategoryAlt />,
-      current: true,
-    },
-    {
-      name: "Transactions",
-      icon: <BsReceiptCutoff />,
-      current: false,
-      to: "/transactions",
-    },
-    { name: "Budgets", to: "/budgets", icon: <GiTargeted />, current: false },
-  ];
-
-  const handleClick = (item) => console.log(item);
-
   return (
     <Container>
-      <SidebarNav initialNavigation={navigation} onItemClick={handleClick} />
-      <Routes>
-        <Route path="/" element={<CategoryPage />} />
-        <Route path="/categories" element={<CategoryPage />} />
-        <Route path="/transactions" element={<h1>Transactions</h1>} />
-        <Route path="/budgets" element={<h1>Budgets</h1>} />
-      </Routes>
+      <Sidebar />
+      <MainContainer>
+        <Routes>
+          <Route path="/" element={<CategoriesPage />} />
+          <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/transactions" element={<h1>Transactions</h1>} />
+          <Route path="/budgets" element={<h1>Budgets</h1>} />
+        </Routes>
+      </MainContainer>
     </Container>
   );
 }

@@ -4,6 +4,8 @@ import { colors } from "./colors";
 import { fonts } from "./typography";
 
 export const reset = css`
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap");
+
   /* Box sizing rules */
   *,
   *::before,

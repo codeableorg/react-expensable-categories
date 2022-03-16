@@ -1,12 +1,17 @@
+import styled from "@emotion/styled";
 import { useState } from "react";
 import SidebarNavItem from "./sidebar-nav-item";
-import PropTypes, { arrayOf } from "prop-types";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
 
 function SidebarNav({ initialNavigation, onItemClick }) {
   const [navigation, setNavigation] = useState(initialNavigation);
 
-  const handleClick = (event, itemClicked) => {
-    // event.preventDefault();
+  const handleClick = (itemClicked) => {
     const newNavigation = navigation.map((navItem) => {
       navItem.current = navItem === itemClicked;
       return navItem;
@@ -16,28 +21,16 @@ function SidebarNav({ initialNavigation, onItemClick }) {
   };
 
   return (
-    <div>
+    <Wrapper>
       {navigation.map((nav) => (
         <SidebarNavItem
           key={nav.name}
-          onClick={(event) => handleClick(event, nav)}
+          onClick={() => handleClick(nav)}
           {...nav}
         />
       ))}
-    </div>
+    </Wrapper>
   );
 }
-
-// SidebarNav.propTypes = {
-//   initialNavigation: arrayOf(
-//     PropTypes.shape({
-//       name: PropTypes.string,
-//       href: PropTypes.string,
-//       icon: PropTypes.element,
-//       current: PropTypes.bool,
-//     })
-//   ),
-//   onItemClick: PropTypes.func,
-// };
 
 export default SidebarNav;

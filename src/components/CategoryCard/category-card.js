@@ -10,7 +10,7 @@ function CategoryCard({ name, color, Icon, amount }) {
         <Styled.CategoryName>{name}</Styled.CategoryName>
         <Styled.CategoryAmount>
           <span>$</span>
-          <span>{amount}</span>
+          <span>{Intl.NumberFormat("en-US").format(amount)}</span>
         </Styled.CategoryAmount>
       </div>
     </Styled.Wrapper>

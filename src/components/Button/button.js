@@ -39,18 +39,18 @@ function typeStyles(type) {
   }
 }
 
-function sizeStyles(size) {
+function sizeStyles(size, rounded) {
   switch (size) {
     case "sm":
       return `
-        padding: 0.5rem 0.75rem;
+        padding: 0.5rem ${rounded ? "" : "0.75rem"};
         ${typography.text.sm}
         line-height: 1em;
       `;
 
     case "lg":
       return `
-          padding: 0.875rem 1.5rem;
+          padding: 0.875rem ${rounded ? "" : "1.5rem"};
           ${typography.text.lg}
           line-height: 1em;
         `;
@@ -66,9 +66,9 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem ${({ rounded }) => (rounded ? "0.75rem" : "1rem")};
   background-color: ${colors.gray[200]};
-  border-radius: 0.5rem;
+  border-radius: ${({ rounded }) => (rounded ? "999px" : "0.5rem")};
   color: ${colors.gray[900]};
   border: none;
   ${typography.text.md}
@@ -89,7 +89,7 @@ const StyledButton = styled.button`
   }
 
   ${(props) => typeStyles(props.type)}
-  ${(props) => sizeStyles(props.size)}
+  ${(props) => sizeStyles(props.size, props.rounded)}
 `;
 
 function Button({ icon, children, ...props }) {
@@ -109,6 +109,7 @@ Button.propTypes = {
   isFullWidth: PropTypes.bool,
   children: PropTypes.string,
   onClick: PropTypes.func,
+  rounded: PropTypes.bool,
 };
 
 export default Button;
