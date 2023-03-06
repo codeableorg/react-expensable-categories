@@ -169,15 +169,18 @@ function Calculator({ category }) {
   }
 
   function calculate() {
+    const prev = Number(prevNumber);
+    const current = currentNumber === "" ? prev : Number(currentNumber);
+
     switch (operant) {
       case "+":
-        return `${(Number(prevNumber) + Number(currentNumber)).toFixed(2)}`;
+        return `${(prev + current).toFixed(2)}`;
       case "-":
-        return `${(Number(prevNumber) - Number(currentNumber)).toFixed(2)}`;
+        return `${(prev - current).toFixed(2)}`;
       case "×":
-        return `${(Number(prevNumber) * Number(currentNumber)).toFixed(2)}`;
+        return `${(prev * current).toFixed(2)}`;
       case "÷":
-        return `${(Number(prevNumber) / Number(currentNumber)).toFixed(2)}`;
+        return `${(prev / current).toFixed(2)}`;
 
       default:
         return;
